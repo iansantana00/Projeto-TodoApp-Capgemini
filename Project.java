@@ -1,37 +1,31 @@
+
 package model;
 
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Logger;
 
-/**
- *
- * @author Marcio Michelluzzi
- */
 public class Project {
-
+    
     private int id;
     private String name;
     private String description;
-    private List<Task> tasks;
     private Date createdAt;
     private Date updatedAt;
-    private static final Logger LOG = Logger.getLogger(Project.class.getName());
 
-    public Project(int id, String name, String description, List<Task> tasks, Date createdAt, Date updatedAt) {
+    public Project(int id, String name, String description, 
+            Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.tasks = tasks;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-
+  
+    // criar o objeto e definir a data de criação
     public Project() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
+        this.createdAt = new Date(); 
     }
-
+    
+  
     public int getId() {
         return id;
     }
@@ -56,14 +50,6 @@ public class Project {
         this.description = description;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -82,7 +68,10 @@ public class Project {
 
     @Override
     public String toString() {
-        return name;
+        return this.name;
     }
 
+    
 }
+
+

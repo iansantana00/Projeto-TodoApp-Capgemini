@@ -5,28 +5,22 @@
  */
 package util;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.util.Date;
 import static javax.swing.GroupLayout.Alignment.CENTER;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import model.Task;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
  * @author iansa
  */
-public class ButtonColumnCellRederer extends DefaultTableCellRenderer{
+public class DeadlineColumnCellRederer extends DefaultTableCellRenderer {
     
-    private String buttonType;
-
-    public String getButtonType() {
-        return buttonType;
-    }
-
-    public void setButtonType(String buttonType) {
-        this.buttonType = buttonType;
-    }
-    
+    // Devolve o componente que será mostrado naquela celula
     @Override
     public Component getTableCellRendererComponent (JTable table, 
             Object value, boolean isSelected, boolean hasFocus, int row, int col) {
@@ -34,14 +28,16 @@ public class ButtonColumnCellRederer extends DefaultTableCellRenderer{
         JLabel label;
         label = (JLabel) super.getTableCellRendererComponent(table,
                 value, isSelected, hasFocus, row, col);
+        label.setHorizontalAlignment(CENTER);
         
-        label.setHorizontalAlignment(jLabel.CENTER);
-        label.setIcon(new javax.swing.ImageIcon(getClass().
-                getResource("/" + buttonType + ".png")));
-        // Retornara o caminho da pasta do butão type que quer rederizar 
+        TaskTableModel taskModel = (TaskTableModel) table.getModel();
+        Task task = taskModel.getTasks().get(row);
         
-        
+        if(task.getDeadline().after(new Date())) {
+            label.setBackground(Color.GREEN);
+        } else {
+            label.setBackground(Color.RED); 
+        }
         return label;
-        
-        
+    }   
 }
